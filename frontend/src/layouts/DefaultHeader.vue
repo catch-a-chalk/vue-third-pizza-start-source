@@ -14,24 +14,14 @@
       <router-link :to="{ name: 'cart' }">0 ₽</router-link>
     </div>
     <div class="header__user">
-      <router-link :to="{ name: 'profile' }">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="
-              /api/public/img/users/user5.webp    1x,
-              /api/public/img/users/user5@2x.webp 2x
-            "
-          />
-          <img
-            src="/api/public/img/users/user5.jpg"
-            srcset="/api/public/img/users/user5@2x.jpg"
-            alt="Василий Ложкин"
-            width="32"
-            height="32"
-          />
-        </picture>
-        <span>Василий Ложкин</span>
+      <router-link v-if="authStore.isAuthenticated" :to="{ name: 'profile' }">
+        <img
+          :src="getPublicImage(authStore.user.avatar)"
+          :alt="authStore.user.name"
+          weight="32"
+          height="32"
+        />
+        <span>{{ authStore.user.name }}</span>
       </router-link>
       <div
         v-if="authStore.isAuthenticated"
