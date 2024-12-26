@@ -43,6 +43,7 @@
       @save="addAddress"
       @delete="isNewAddressFormOpened = false"
     />
+    </div>
   </div>
 </template>
 
@@ -265,6 +266,7 @@ const updateAddress = (address, data) => {
     padding: 10px 16px;
     
     border-bottom: 1px solid rgba($green-500, 0.1);
+  }
   }
 }
 </style>
