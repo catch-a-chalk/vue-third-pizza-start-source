@@ -1,16 +1,20 @@
 <template>
-  <app-popup>
-    <router-link :to="{ name: 'orders' }" class="close">
-      <span class="visually-hidden">Закрыть поп-ап</span>
-    </router-link>
-    <app-popup-title> Спасибо за заказ </app-popup-title>
-    <p>Мы начали готовить Ваш заказ, скоро привезём его вам ;)</p>
-    <app-popup-button>
-      <router-link :to="{ name: 'orders' }" class="button">
-        Отлично, я жду!
-      </router-link>
-    </app-popup-button>
-  </app-popup>
+  <div>
+    <transition name="fade" appear>
+      <app-popup>
+        <router-link :to="{ name: 'orders' }" class="close">
+          <span class="visually-hidden">Закрыть поп-ап</span>
+        </router-link>
+        <app-popup-title> Спасибо за заказ </app-popup-title>
+        <p>Мы начали готовить Ваш заказ, скоро привезём его вам ;)</p>
+        <app-popup-button>
+          <router-link :to="{ name: 'orders' }" class="button">
+            Отлично, я жду!
+          </router-link>
+        </app-popup-button>
+      </app-popup>
+    </transition>
+  </div>
 </template>
 
 <script setup>
