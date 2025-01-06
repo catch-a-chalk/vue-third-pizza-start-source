@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiService } from "@/sevices/api/api.service";
+import { ApiService } from "@/services/api/api.service";
 
 export class AuthService extends ApiService {
   constructor(path) {

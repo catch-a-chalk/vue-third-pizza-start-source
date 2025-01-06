@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios"
+import axios, { AxiosError } from "axios";
 
 class ApiError extends Error {
   constructor(message, response) {
@@ -15,12 +15,10 @@ export class ApiService {
         e.response
       );
     } else {
-      // Возвращаем ошибку, содержащую сообщение об ошибке и ответ сервера
       return new ApiError(e.message, e.response);
     }
   }
 
-  // Функция запросов без тела: GET, DELETE
   _wrapper1(method, url) {
     return async () => {
       try {
@@ -38,7 +36,6 @@ export class ApiService {
     };
   }
 
-  // Функция для запросов с телом: POST, PUT
   _wrapper2(method, url, payload) {
     return async () => {
       try {
@@ -50,7 +47,7 @@ export class ApiService {
       } catch (e) {
         return {
           __state: "error",
-          data: this._getError(e)
+          data: this._getError(e),
         };
       }
     };

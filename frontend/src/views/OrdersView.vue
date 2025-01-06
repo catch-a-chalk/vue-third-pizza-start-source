@@ -79,10 +79,9 @@
 </template>
 
 <script setup>
-import { useProdileStore } from "@/stores/profile";
+import { useProfileStore } from "@/stores/profile";
 import { useCartStore } from "@/stores/cart";
 import { useRouter } from "vue-router";
-import { getPublicImage } from "@/common/helpers/public-image";
 
 const cartStore = useCartStore();
 const profileStore = useProfileStore();

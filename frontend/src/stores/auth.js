@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import resources from "@/services/resources";
 import { useProfileStore } from "@/stores/profile";
 import JwtService from "@/services/jwt/jwt.service";
-import jwtService from "../services/jwt/jwt.service";
+import jwtService from "@/services/jwt/jwt.service";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({

@@ -1,4 +1,4 @@
-import { AuthService } from "@/seervices/api/auth.service";
+import { AuthService } from "@/services/api/auth.service";
 
 export class AuthResource extends AuthService {
   constructor() {

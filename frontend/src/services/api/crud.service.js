@@ -3,7 +3,7 @@ import { ApiService } from "@/services/api/api.service";
 export class CrudService extends ApiService {
   constructor(resource) {
     super();
-    this.responce = resource;
+    this.resource = resource;
   }
 
   get() {

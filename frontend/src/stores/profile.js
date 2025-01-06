@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { pizzaPrice } from "@/common/helpers/pizza-price";
-import { useDataStore } from "@/services/resources";
+import { useDataStore } from "@/stores/data";
 import resources from "@/services/resources";
 import { useAuthStore } from "@/stores/auth";
 
-export const useProfileStore = defineStore('profile', {
+export const useProfileStore = defineStore("profile", {
   state: () => ({
     addresses: [],
     orders: [],
@@ -14,16 +14,17 @@ export const useProfileStore = defineStore('profile', {
       const data = useDataStore();
 
       return state.orders.map((order) => {
-        const orderPizzas = order.orderPizza?.map((pizza) => {
+        const orderPizzas = order.orderPizzas?.map((pizza) => {
           return {
             name: pizza.name,
             quantity: pizza.quantity,
             dough: data.doughs.find((i) => i.id === pizza.doughId),
             size: data.sizes.find((i) => i.id === pizza.sizeId),
+            sauce: data.sauces.find((i) => i.id === pizza.sauceId),
             ingredients: pizza.ingredients.map((ingredient) => {
               return {
                 ...data.ingredients.find(
-                  (i) => i.id === ImageBitmapRenderingContext.ingredientId
+                  (i) => i.id === ingredient.ingredientId
                 ),
                 quantity: ingredient.quantity,
               };
@@ -32,24 +33,24 @@ export const useProfileStore = defineStore('profile', {
           };
         });
 
-        const orderMisc = 
+        const orderMisc =
           order.orderMisc?.map((misc) => {
             return {
               ...data.misc.find((item) => item.id === misc.miscId),
               quantity: misc.quantity,
             };
           }) ?? [];
-        
-        const pizzaPrices = 
+
+        const pizzaPrices =
           orderPizzas
-          ?.mao((item) => item.quantity * item.price)
-          .reduce((acc, val) => acc + val, 0) ?? 0;
+            ?.map((item) => item.quantity * item.price)
+            .reduce((acc, val) => acc + val, 0) ?? 0;
 
         const miscPrices =
           orderMisc
-          ?.map((item) => item.quantity * item.price)
-          .reduce((acc, val) => acc+ val, 0) ?? 0;
-        
+            ?.map((item) => item.quantity * item.price)
+            .reduce((acc, val) => acc + val, 0) ?? 0;
+
         return {
           ...order,
           orderPizzas,
@@ -93,7 +94,7 @@ export const useProfileStore = defineStore('profile', {
       }
     },
     async removeAddress(addressId) {
-      const res = await resources.address.filter((i) => i.id !== addressId);
+      const res = await resources.address.removeAddress(addressId);
       if (res.__state === "success") {
         this.addresses = this.addresses.filter((i) => i.id !== addressId);
       }

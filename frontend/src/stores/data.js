@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 import {
   normalizeDough,
   normalizeIngredients,
@@ -7,7 +7,7 @@ import {
 } from "@/common/helpers/normalize";
 import resources from "@/services/resources";
 
-export const useDataStore = defineStore('data', {
+export const useDataStore = defineStore("data", {
   state: () => ({
     doughs: [],
     ingredients: [],
@@ -16,16 +16,16 @@ export const useDataStore = defineStore('data', {
     misc: [],
   }),
   getters: {
-    isDataLoaded()
- {
-  return (
-    this.doughs.length > 0 &&
-    this.ingredients.length > 0 &&
-    this.sauces.length > 0 &&
-    this.sizes.length > 0 &&
-    this.misc.length > 0
-  );
- },  },
+    isDataLoaded() {
+      return (
+        this.doughs.length > 0 &&
+        this.ingredients.length > 0 &&
+        this.sauces.length > 0 &&
+        this.sizes.length > 0 &&
+        this.misc.length > 0
+      );
+    },
+  },
   actions: {
     async loadData() {
       await Promise.all([

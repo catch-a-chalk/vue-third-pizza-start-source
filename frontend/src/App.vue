@@ -10,7 +10,7 @@
 
 <script setup>
 import AppLayout from "@/layouts/AppLayout.vue";
-import { onMounted, ref } from "@/vue";
+import { onMounted, ref } from "vue";
 import { useDataStore } from "@/stores/data";
 import { useAuthStore } from "@/stores/auth";
 import JwtService from "@/services/jwt/jwt.service";
